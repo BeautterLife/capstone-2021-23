@@ -13,7 +13,7 @@ from .gmail_send import gmail_send
 from django.http import HttpResponse
 
 # Create your views here.
-domain = "http://58.142.223.232:8060/"
+domain = "" # 서버 주소
 
 client_id = "" # 카카오 로그인 REST API KEY
 
@@ -22,7 +22,8 @@ client_id = "" # 카카오 로그인 REST API KEY
 def kakao_login(request):
     
     REDIRECT_URI =domain+ "users/login/kakao/callback/"
-    return redirect(
+    try:
+        return redirect(
         f"https://kauth.kakao.com/oauth/authorize?client_id={client_id}&redirect_uri={REDIRECT_URI}&response_type=code"
     )
     

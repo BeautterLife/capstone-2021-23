@@ -25,7 +25,7 @@ from .models import Cctv
 class VideoCamera(object):
     def __init__(self):
         self.video = cv2.VideoCapture(
-    'udpsrc port=8061 caps = "application/x-rtp, media=(string)video, clock-rate=(int)90000, encoding-name=(string)H264"'
+    'udpsrc port=8100 caps = "application/x-rtp, media=(string)video, clock-rate=(int)90000, encoding-name=(string)H264"'
     ' ! rtpjitterbuffer'
     ' ! rtph264depay'
     ' ! h264parse'
@@ -92,7 +92,7 @@ def main_page(request):
         date_list.append(name)
     
     records = Record.objects.last()
-    dir_path ="http://58.142.223.232:8080/assult_candidate/"
+    dir_path ="http://192.168.0.10:8100/assult_candidate/"
     
     if records is None:
         for file_name,record in zip(file_list, date_list):
